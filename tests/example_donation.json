@@ -1,0 +1,77 @@
+{
+    "donor": {
+        "firstname": "Shreyes",
+        "lastname": "Seshasai",
+        "addr1": "123 Main St",
+        "city": "Washington",
+        "state": "DC",
+        "zip": "20001",
+        "country": "United States",
+        "isEligibleForExpressLane": false,
+        "employerData": {
+            "employer": "Switchboard",
+            "occupation": "Engineer",
+            "employerAddr1": null,
+            "employerCity": null,
+            "employerState": null,
+            "employerCountry": null
+        },
+        "email": "shreyes@oneswitchboard.com",
+        "phone": "8885551234"
+    },
+    "contribution": {
+        "createdAt": "2023-06-09T15:59:27-04:00",
+        "orderNumber": "AB1111",
+        "contributionForm": "sticker103",
+        "refcodes": {
+            "refcode": "ref-Crane"
+        },
+        "refcode": "ref-Crane",
+        "refcode2": null,
+        "creditCardExpiration": null,
+        "recurringPeriod": "once",
+        "recurringDuration": 1,
+        "weeklyRecurringSunset": null,
+        "abTestName": null,
+        "isRecurring": false,
+        "isPaypal": true,
+        "isMobile": false,
+        "abTestVariation": null,
+        "isExpress": false,
+        "withExpressLane": false,
+        "expressSignup": false,
+        "uniqueIdentifier": "AqxHMqZAvjA",
+        "textMessageOption": "opt_in",
+        "giftDeclined": null,
+        "giftIdentifier": null,
+        "shippingName": null,
+        "shippingAddr1": null,
+        "shippingCity": null,
+        "shippingState": null,
+        "shippingZip": null,
+        "shippingCountry": null,
+        "smartBoostAmount": null,
+        "customFields": [],
+        "status": "approved",
+        "thanksUrl": null
+    },
+    "lineitems": [
+        {
+            "sequence": 1,
+            "entityId": 1,
+            "fecId": "C00000",
+            "committeeName": "Eric for Dogcatcher",
+            "amount": "5.0",
+            "paidAt": "2023-08-27T04:59:45-04:00",
+            "paymentId": 242184335,
+            "lineitemId": 600314606
+        }
+    ],
+    "form": {
+        "name": "sticker103",
+        "kind": "page",
+        "ownerEmail": null,
+        "managingEntityName": "Eric for Dogcatcher",
+        "managingEntityCommitteeName": "Eric for Dogcatcher"
+    }
+}
