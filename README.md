@@ -1,18 +1,15 @@
 # Switchboard Engineering Exercise
 
-This code contains a server that can process Actblue webhook requests and insert them into a local database.
+This repository contains the back-end for an app that interfaces with Actblue donation data. 
+
+The API contains an endpoint that can receive Actblue webhook donation data, as well as endpoints that display aggregates donation amounts for a given entity ID.
 
 ## Tech stack
 
-Frontend would have been
-- React / Typescript
-
-Backend uses
+Backend:
 - FastAPI as the web framework
 - sqlalchemy for the ORM
-
-Database
-- postgresql
+- postgres database
 
 ## Installation
 
@@ -26,12 +23,14 @@ start the database with
 brew services start postgresql@15
 '''
 
-Download the `donations.sql` file from [the drive](https://drive.google.com/drive/folders/1P_YlH4yqYkhejWN088IjLl4cwLah6_5j) and insert it into the your database
+Download the `donations.sql` file from [the drive](https://drive.google.com/drive/folders/1P_YlH4yqYkhejWN088IjLl4cwLah6_5j) and insert it into the your database. 
 
 `
 psql -h hostname -p port_number -U username -f donations.sql dbname `
 
 Your database should now have a table called `donations` with 17713 rows in it. 
+
+Optionally set `lineitem_id` as the primary key. I did this via postico, a postgresql GUI.
 
 ### Environment setup
 Create a `.env file`
@@ -39,6 +38,8 @@ Create a `.env file`
 ```
 cp .env.example .env
 ```
+
+and replace the values your own DB user, name, host, and port.
 
 ### Installing the python dependencies
 
@@ -66,6 +67,12 @@ uvicorn main:app --reload
 ```
 
 Your backend server should now run at <http://localhost:8000>. 
+
+### Testing
+
+## Testing with pytest
+
+Run `pytest` to run unit tests in `backend/tests`. 
 
 ## Testing with curl
 Selecting items from the donation table with lineitem_id=600314606 returns one lineitem. 
@@ -159,6 +166,13 @@ curl --location --request POST 'localhost:8000/actblue_donation/' --header 'Auth
 
 After sending the curl request, the lineitem appears successfully in the database table.
 ![alt text](image-2.png)
+
+## Testing the API with the web browser
+Visit `http://localhost:8000/recent_donations/entity/1` in your web browser to see data from the most recent 10 donations from the entity with `entity_id=1`
+
+Visit `http://localhost:8000/aggregate_contributions/entity/1` to see the sum of all donations over all time for entity 1.
+
+Visit `http://localhost:8000/aggregate_contributions/entity/1/days/1000` to see the sum of all donations over the past 1000 days.
 
 ### Analysis
 

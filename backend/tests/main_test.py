@@ -1,4 +1,4 @@
-import backend.main as main, db
+import main, db
 import json
 from pathlib import Path
 
