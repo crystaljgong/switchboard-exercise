@@ -176,8 +176,16 @@ Visit `http://localhost:8000/aggregate_contributions/entity/1/days/1000` to see 
 
 ### Analysis
 
-I would like to add:
-- logging
-- more useful error handling
-- pydantic for model validation
-- add unit testing
+I did spend about 6 hours on this project, but the first two or so were spent setting up a developer environment on this new laptop -- installing xcode, python, node, postgres, github, and re-orienting myself.
+
+Lack of authentication for this API is a glaring issue I'd like to address next. I am new to FastAPI and chose to skip it for speed, but adding a token would be relatively simple.
+
+There is minimal logging at the moment, but in the past I have used python's default logger and sent logs to datadog. I would love to add error logging to the `try/except` blocks and more sophisticated status logging. 
+
+I was briefly using the pydantic library before removing it for simplicity, but I would like to add it back in to improve data validation, guarding against changes in the Actblue webhook json schema or in the sqlalchemy model. 
+
+I wrote some unit tests to validate the sqlalchemy queries, but would like to add testing for the endpoints. I've used Github Actions for CI/CD in the past, and pytest integrates well with Github actions CI/CD.
+
+I would choose to deploy the backend as a microservice, in a kubernetes container. 
+
+
