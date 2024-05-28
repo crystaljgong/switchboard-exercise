@@ -28,12 +28,17 @@ brew services start postgresql@15
 
 Download the `donations.sql` file from [the drive](https://drive.google.com/drive/folders/1P_YlH4yqYkhejWN088IjLl4cwLah6_5j) and insert it into the your database
 
-'''
-psql -h hostname -p port_number -U username -f donations.sql dbname 
-'''
+`
+psql -h hostname -p port_number -U username -f donations.sql dbname `
 
 Your database should now have a table called `donations` with 17713 rows in it. 
 
+### Environment setup
+Create a `.env file`
+
+```
+cp .env.example .env
+```
 
 ### Installing the python dependencies
 
@@ -56,9 +61,9 @@ pip install -r requirements.txt
 ### Running the backend
 
 Run the server with 
-'''
-python backend/main.py
-'''
+```
+uvicorn main:app --reload
+```
 
 Your backend server should now run at <http://localhost:8000>. 
 
@@ -69,7 +74,9 @@ Selecting items from the donation table with lineitem_id=600314606 returns one l
 
 In a separate terminal from the one the server is running, send a curl request to the simulate a webhook from Actblue. 
 
-'''
+NOTE: The lineitem number has been changed from `500314606` to `600314606` to avoid conflict with an existing lineitem with `id = 500314606`.
+
+```
 curl --location --request POST 'localhost:8000/actblue_donation/' --header 'Authorization: Basic YWN0Ymx1ZTpDSEFOR0VNRQ==' --header 'Content-Type: application/json' --data-raw '{
     "donor": {
         "firstname": "Shreyes",
@@ -148,7 +155,15 @@ curl --location --request POST 'localhost:8000/actblue_donation/' --header 'Auth
     }
 }
 '
-'''
+```
 
 After sending the curl request, the lineitem appears successfully in the database table.
 ![alt text](image-2.png)
+
+### Analysis
+
+I would like to add:
+- logging
+- more useful error handling
+- pydantic for model validation
+- add unit testing
